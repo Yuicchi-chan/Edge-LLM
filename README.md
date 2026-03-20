@@ -19,7 +19,6 @@ Theme switching
 
 ### The backend
 - Llama.cpp
-- Model needs to be less than 1B parameters
 - Everything must run locally, route harder tasks to cloud infra
 - Java/Flutter/Native only
 
