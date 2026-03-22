@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:contentInsetStartWithNavigation="0dp"
+            android:minHeight="56dp"
+            android:titleTextColor="#FFFFFF"
+            app:navigationIcon="@drawable/outline_menu_24"
+            app:title="@string/app_name"
+            app:titleCentered="false" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/metadata_panel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#111111"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#33FFFFFF"
+            app:strokeWidth="1dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="false">
+
+                <TextView
+                    android:id="@+id/gguf"
+                    style="@style/TextAppearance.Material3.BodySmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="14dp"
+                    android:text="Model details appear here once loaded."
+                    android:textColor="#D2D2D2" />
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000"
+                android:clipToPadding="false"
+                android:fadeScrollbars="false"
+                android:paddingHorizontal="2dp"
+                android:paddingBottom="8dp"
+                android:scrollbars="vertical"
+                app:reverseLayout="true"
+                tools:listitem="@layout/item_message_assistant" />
+
+            <LinearLayout
+                android:id="@+id/empty_state_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp">
+
+                <TextView
+                    android:id="@+id/empty_hi"
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hi"
+                    android:textColor="#6EFFFFFF" />
+
+                <TextView
+                    android:id="@+id/empty_name"
+                    style="@style/TextAppearance.Material3.DisplaySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Yuicchi"
+                    android:textColor="#FFFFFFFF" />
+
+                <TextView
+                    android:id="@+id/empty_prompt"
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="How may I assist you?"
+                    android:textColor="#9F9F9F" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/chatbox_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:cardBackgroundColor="#121212"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2BFFFFFF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
+
+                <EditText
+                    android:id="@+id/user_input"
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:hint="Message"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:paddingHorizontal="4dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#8D8D8D" />
+
+                <ImageButton
+                    android:id="@+id/reasoning_icon_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_compose_icon_button"
+                    android:contentDescription="Reasoning"
+                    android:padding="9dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/outline_reasoning_24"
+                    android:tint="#8F8F8F" />
+
+                <ImageButton
+                    android:id="@+id/fab"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_folder_fab"
+                    android:background="@drawable/bg_send_action_button"
+                    android:contentDescription="Send"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="#FFFFFF" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sidebar"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#0E0E0E"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            style="@style/TextAppearance.Material3.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saved Models"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:text="Select to load. Added models are remembered."
+            android:textColor="#A5A5A5" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cached_models"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_cached_model" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/metadata_panel_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:text="Show Model Details Panel"
+            android:textColor="#FFFFFF" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/tool_calling_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:text="Enable Tool Calling"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Custom System Prompt"
+            android:textColor="#A5A5A5" />
+
+        <EditText
+            android:id="@+id/system_prompt_input"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_compose_icon_button"
+            android:gravity="top|start"
+            android:hint="Set assistant behavior, style, rules..."
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#7F7F7F" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_system_prompt_button"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Save System Prompt" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/reasoning_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:checked="true"
+            android:text="Reasoning"
+            android:textColor="#FFFFFF" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_model_button"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Add Model" />
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
